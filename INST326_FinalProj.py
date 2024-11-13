@@ -1,5 +1,6 @@
 # INST 326
 import random
+import time
 
 # Partner Matching
 
@@ -9,8 +10,16 @@ import random
 
 # Break Reminders and Study Tips
 
-def break_reminders():
-    pass
+def set_break_reminder(break_time_minutes):
+    """Reminds user to take a break after a certain amount of time.
+
+    Args: break time in minutes
+    
+    Returns: take a break message"""
+    break_time_seconds = break_time_minutes * 60 #converts input to seconds bc sleep function only takes seconds
+    time.sleep(break_time_seconds) #delays message by input time
+    print("Take a break!") # break reminder!
+
 
 def study_tips():
     """returns a study tip to the user when run.
