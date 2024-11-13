@@ -161,8 +161,49 @@ def set_study_session(student, partner, time_slot):
     print(f"Study session scheduled between {student.get_name()} and {partner.get_name()} at {time_slot}.")
 
 # Progress Tracking + Goals
+def update_progress(self, subject, hours_studied):
+        """
+        Adds study hours for a specific subject and updates the student's progress tracker.
+        
+        Args:
+        - subject (str): The subject being studied.
+        - hours_studied (float): The number of hours studied.
+
+        Returns:
+        - self: The Student instance, allowing for method chaining.
+        """
+        if subject not in self.progress:
+            print(f"{subject} is not in the study goals. Please set a study goal first.")
+            return self
+
+        self.progress[subject] += hours_studied
+        self.study_hours += hours_studied
+
+        # Check if the study goal for the subject has been met
+        if self.progress[subject] >= self.study_goals.get(subject, 0):
+            print(f"{self.name} has met the study goal for {subject}!")
+        
+        return self  # Return self for method chaining
 
 # Break Reminders and Study Tips
+def set_study_goal(self, subject, target_hours):
+        """
+        Sets or updates the study goal for a specific subject.
+        
+        Args:
+        - subject (str): The subject for which to set the goal.
+        - target_hours (float): The target study hours for the subject.
+
+        Returns:
+        - self: The Student instance, allowing for method chaining.
+        """
+        self.study_goals[subject] = target_hours
+        if subject not in self.progress:
+            self.progress[subject] = 0  # Initialize progress for the new subject
+
+        print(f"Set a study goal of {target_hours} hours for {subject}.")
+        
+        return self  # Return self for method chaining
 
 def set_break_reminder(break_time_minutes):
     """Reminds user to take a break after a certain amount of time.
