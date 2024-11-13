@@ -31,6 +31,7 @@ class Student:
         self.study_time = {}  # track time per study session
         self.study_hours = 0  # total hours studied
         self.scheduled_sessions = []
+        
 
     def get_name(self):
         return self.name
@@ -58,6 +59,13 @@ class Student:
 
     def get_scheduled_sessions(self):
         return self.scheduled_sessions
+        
+    def update_progress(self, student, subject, hours_studied):
+        return self.progress
+        
+    def set_study_goal(self, subject, target_hours):
+        return self.studygoal
+    
 
     def get_progress_report(self):
         """
