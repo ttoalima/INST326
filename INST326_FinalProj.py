@@ -1,6 +1,6 @@
 # INST 326
 """
-Group Members: Rosane Ndaha, Martin Beck, Toalima Tamasese
+Group Members: Rosane Ndaha, Martin Beck, Toalima Tamasese, Jessica Wu
 Assignment: Final Project Check In 1
 Date: 11_12_24
 """
