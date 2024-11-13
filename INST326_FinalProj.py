@@ -86,7 +86,6 @@ class Student:
             }
         return report
 
-
 # Smart Study Partner Matching
 def match_score(student1, student2):
     """Calculates a compatibility score between two students based on matching attributes.
