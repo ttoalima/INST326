@@ -222,12 +222,18 @@ def study_tips():
     
     Returns: random tip"""
     tip_bank = [] #bank for text to go into
-    with open("tips") as fc: #open file with the tips
-        for tip in fc: 
-            tip_bank.append(tip.strip()) #adds to tip bank 
+    try:
+        with open("tips") as fc: #open file with the tips
+            for tip in fc: 
+                tip_bank.append(tip.strip()) #adds to tip bank 
+    except FileNotFoundError:
+        print("File is missing! Please ensure tips.txt is in the same folder.")
+        exit
+    
     random_tip = random.choice(tip_bank) #randomly picks a tip
-    print(random_tip) #returns study tip
+    print(f"Here's a tip!: '{random_tip}'") #returns study tip
 
+study_tips()
 
 if __name__ == "__main__":
     """
