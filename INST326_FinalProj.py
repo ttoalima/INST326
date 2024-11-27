@@ -52,7 +52,8 @@ class Student:
 
     def get_scheduled_sessions(self):
         return self.scheduled_sessions
-
+        
+# Progress Tracking + Goals
     def update_progress(self, subject, hours_studied):
         """
         Updates the progress for a specific subject by adding study hours.
@@ -93,7 +94,8 @@ class Student:
                 "Status": status
             }
         return report
-    
+        
+# Break Reminders and Study Tips
     def set_study_goal(self, subject, target_hours):
         """
         Sets or updates the study goal for a specific subject.
@@ -189,7 +191,7 @@ def set_study_session(student, partner, time_slot):
     partner.scheduled_sessions.append(session)
     print(f"Study session scheduled between {student.get_name()} and {partner.get_name()} at {time_slot}.")
 
-
+# Break Reminders and Study Tips
 def set_break_reminder(break_time_minutes):
     """
     Reminds the user to take a break after a specified time.
