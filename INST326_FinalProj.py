@@ -194,14 +194,30 @@ def set_study_session(student, partner, time_slot):
 # Break Reminders and Study Tips
 def set_break_reminder(break_time_minutes):
     """
-    Reminds the user to take a break after a specified time.
+    Reminds the user to take a break after a specified time. Sets a break time that is equal to 1/4 of the set break time
+    and allows user to restart their timer after the break is over.
 
     Args:
     - break_time_minutes (int): The break time in minutes.
     """
-    break_time_seconds = break_time_minutes * 60
-    time.sleep(break_time_seconds)
-    print("Take a break!")
+    while True:
+        break_time_seconds = break_time_minutes * 60 # time.sleep only takes seconds, this converts input to seconds
+        time.sleep(break_time_seconds)
+        print("Take a break!")
+
+        break_time = break_time_seconds/4
+
+        time.sleep(break_time)
+        print("Break over, back to work! Remember to set another break!")
+
+        restart_timer = input("Restart timer?\n(Yes/No)\n").upper()
+
+        if restart_timer == "YES":
+            continue
+        elif restart_timer == "NO":
+            break
+        else:
+            raise TypeError("There was an error with your input.")
 
 
 def study_tips():
