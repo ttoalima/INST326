@@ -1,8 +1,6 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-import random
-import time
 from INST326_FinalProj import Student, match_score, find_study_partner, suggest_study_times, set_break_reminder, set_study_session, study_tips
 
 
@@ -75,12 +73,22 @@ class TestStudent(unittest.TestCase):
         self.assertIn("English", updated_goals)
         self.assertEqual(updated_goals["English"], 2)
 
-    @patch("time.sleep", return_value=None)  # Mock sleep to speed up the test
-    @patch("sys.stdout", new_callable=StringIO)
-    def test_set_break_reminder(self, mock_stdout, mock_sleep):
+    @patch("time.sleep", return_value=None)  # Mock sleep to avoid delays
+    @patch("builtins.input", side_effect=["NO"])  # Simulate user input for the test
+    @patch("sys.stdout", new_callable=StringIO)  # Capture printed output
+    def test_set_break_reminder(self, mock_stdout, mock_input, mock_sleep):
         """Test break reminder functionality."""
-        set_break_reminder(0.01)  # Minimal time for testing
-        self.assertIn("Take a break!", mock_stdout.getvalue())
+        set_break_reminder(0.01)  # Call the function with a minimal time for testing
+        output = mock_stdout.getvalue().strip()  # Capture all printed output
+
+        # Debug output
+        print(f"Captured output:\n{output}")
+
+        # Assert expected output
+        self.assertIn("Take a break!", output)
+        self.assertIn("Break over, back to work! Remember to set another break!", output)
+        self.assertIn("Restart timer?\n(Yes/No)", output)  # Prompt should now be explicitly visible
+        self.assertIn("Input received: NO", output)  # Confirm the input was simulated
 
     @patch("random.choice", return_value="Stay hydrated and take breaks!")
     @patch("sys.stdout", new_callable=StringIO)
